@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Avengers | Official Website</title>
+    <style>
+        :root {
+            --primary: #00d4ff;
+            --secondary: #0055ff;
+            --dark: #0a0a0c;
+            --text: #ffffff;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--dark);
+            color: var(--text);
+            margin: 0;
+            line-height: 1.6;
+        }
+        header {
+            background: linear-gradient(135deg, var(--secondary), var(--dark));
+            padding: 80px 20px;
+            text-align: center;
+            border-bottom: 3px solid var(--primary);
+        }
+        .container { width: 80%; margin: auto; overflow: hidden; padding: 20px; }
+        h1 { font-size: 3.5rem; margin: 0; color: var(--primary); text-transform: uppercase; letter-spacing: 5px; }
+        .tagline { font-size: 1.2rem; opacity: 0.8; }
+        
+        .leadership {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 40px 0;
+        }
+        .ceo-card {
+            background: #16161a;
+            padding: 20px;
+            border-radius: 15px;
+            border: 1px solid var(--primary);
+            width: 200px;
+            text-align: center;
+        }
+
+        .section { padding: 60px 0; border-bottom: 1px solid #333; }
+        h2 { color: var(--primary); font-size: 2rem; border-left: 5px solid var(--primary); padding-left: 15px; }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        .project-card {
+            background: #1c1c21;
+            padding: 20px;
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+        .project-card:hover { transform: translateY(-10px); background: #25252b; }
+        
+        footer { text-align: center; padding: 40px; font-size: 0.9rem; color: #777; }
+        .highlight { color: var(--primary); font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>AI Avengers</h1>
+    <p class="tagline">Innovating the Future | 6th Grade Engineers</p>
+    
+    <div class="leadership">
+        <div class="ceo-card">
+            <h3>Thangeswaran</h3>
+            <p class="highlight">CEO</p>
+        </div>
+        <div class="ceo-card">
+            <h3>Mohinth</h3>
+            <p class="highlight">CEO</p>
+        </div>
+    </div>
+</header>
+
+<div class="container">
+    
+    <section class="section" id="about">
+        <h2>About the Team</h2>
+        <p>The AI Avengers are a group of young inventors dedicated to pushing the boundaries of technology. Specializing in <strong>ESP-based electronics</strong> and <strong>Robo-Racing</strong>, we participate in elite science competitions to solve real-world problems through automation and robotics.</p>
+    </section>
+
+    <section class="section" id="projects">
+        <h2>Our Innovations</h2>
+        <div class="project-grid">
+            <div class="project-card">
+                <h3>Robo Racing Cars</h3>
+                <p>Custom-built high-speed racing chassis integrated with precision motor control for competitive track racing.</p>
+            </div>
+            <div class="project-card">
+                <h3>ESP Smart Systems</h3>
+                <p>Utilizing ESP32 and ESP8266 microcontrollers to create IoT solutions and remote-controlled hardware.</p>
+            </div>
+            <div class="project-card">
+                <h3>Water Management</h3>
+                <p>An award-winning sensor network designed for automatic water level monitoring and conservation.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="contact">
+        <h2>Contact Us</h2>
+        <p>Ready to collaborate or want to see a demo of our cars? Contact the AI Avengers team today!</p>
+        <p>Email: <span class="highlight">contact@aiavengers.local</span></p>
+    </section>
+
+</div>
+
+<footer>
+    &copy; 2026 AI Avengers. Built for Young Scientists of Tamil Nadu.
+</footer>
+
+</body>
+</html>
