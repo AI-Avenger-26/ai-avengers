@@ -172,29 +172,31 @@
             gap: 25px; 
         }
         
+        /* --- Revised Project Card Styles --- */
         .project-card { 
+            display: flex;
+            flex-direction: column;
             background: var(--card-bg); 
-            padding: 0; /* Changed to 0 to allow image to flush to edges */
             border-radius: 15px; 
             border: 1px solid #222; 
             cursor: pointer; 
             transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
             overflow: hidden;
+            position: relative;
         }
         
-        .project-card:hover { border-color: var(--primary); transform: translateY(-5px); }
+        .project-card:hover { 
+            border-color: var(--primary); 
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.15);
+        }
 
-        /* Project Image Styles */
         .project-image {
             width: 100%;
-            height: 200px;
+            height: 160px; /* Smaller initial height */
             object-fit: cover;
             border-bottom: 1px solid #222;
             transition: transform 0.5s ease;
-        }
-
-        .project-card:hover .project-image {
-            transform: scale(1.05);
         }
 
         .project-content {
@@ -212,6 +214,26 @@
         .project-card.active .description { 
             max-height: 350px; 
             margin-top: 15px; 
+        }
+
+        /* --- THE BIG PICTURE HOVER REVEAL --- */
+        .big-preview-container {
+            max-height: 0; /* Hidden by default */
+            overflow: hidden;
+            transition: max-height 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+            background: #000;
+        }
+
+        .big-preview-image {
+            width: 100%;
+            display: block;
+            object-fit: contain;
+        }
+
+        /* When the card is hovered, reveal the big picture at the bottom */
+        .project-card:hover .big-preview-container {
+            max-height: 600px; 
+            border-top: 1px solid var(--primary);
         }
 
         .contact-container { 
@@ -293,6 +315,10 @@
                     Caregivers often lack real-time environmental data in intensive care settings. This ESP32-based device monitors temperature, humidity, and light levels, sending immediate alerts to external devices when thresholds are crossed.
                 </div>
             </div>
+            <!-- Big Picture at Bottom -->
+            <div class="big-preview-container">
+                <img src="Project1.jpg.jpeg" class="big-preview-image" alt="Big View">
+            </div>
         </div>
 
         <!-- Project 2 -->
@@ -305,6 +331,10 @@
                     Designed to assist individuals with speech impairments or the elderly. This PictoBlox-based application allows users to play pre-recorded command audio through a simple interface to communicate their needs instantly.
                 </div>
             </div>
+            <!-- Big Picture at Bottom -->
+            <div class="big-preview-container">
+                <img src="Project2.jpg.jpeg" class="big-preview-image" alt="Big View">
+            </div>
         </div>
 
         <!-- Project 3 -->
@@ -316,6 +346,10 @@
                 <div class="description">
                     An Android-based tool that calculates caloric intake from meals and provides corresponding workout requirements (like walking or gym time) to maintain a healthy nutritional balance.
                 </div>
+            </div>
+            <!-- Big Picture at Bottom -->
+            <div class="big-preview-container">
+                <img src="Project3.jpg.jpeg" class="big-preview-image" alt="Big View">
             </div>
         </div>
     </div>
