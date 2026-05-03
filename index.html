@@ -23,11 +23,14 @@
             overflow-x: hidden; 
         }
         
+        /* Digital Glow Background */
         body::before { 
             content: ""; 
             position: fixed; 
-            top: 0; left: 0; 
-            width: 100%; height: 100%; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
             background: radial-gradient(circle at 50% 50%, #101020 0%, #050505 100%); 
             z-index: -1; 
         }
@@ -119,8 +122,10 @@
         .member-card::after { 
             content: ""; 
             position: absolute; 
-            top: 0; left: 0; 
-            width: 4px; height: 100%; 
+            top: 0; 
+            left: 0; 
+            width: 4px; 
+            height: 100%; 
             background: var(--primary); 
         }
         
@@ -161,7 +166,6 @@
         .award-box:hover { border-color: var(--accent); }
         .award-box h3 { margin: 0; font-size: 0.9rem; color: var(--accent); }
 
-        /* --- Updated Project Grid & Card Styles --- */
         .project-grid { 
             display: grid; 
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
@@ -170,37 +174,32 @@
         
         .project-card { 
             background: var(--card-bg); 
-            padding: 0; /* Reset padding for edge-to-edge images */
+            padding: 0; /* Changed to 0 to allow image to flush to edges */
             border-radius: 15px; 
             border: 1px solid #222; 
             cursor: pointer; 
             transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
             overflow: hidden;
         }
+        
+        .project-card:hover { border-color: var(--primary); transform: translateY(-5px); }
 
-        .project-img-container {
+        /* Project Image Styles */
+        .project-image {
             width: 100%;
             height: 200px;
-            overflow: hidden;
-            border-bottom: 1px solid #222;
-        }
-
-        .project-img-container img {
-            width: 100%;
-            height: 100%;
             object-fit: cover;
+            border-bottom: 1px solid #222;
             transition: transform 0.5s ease;
         }
 
-        .project-card:hover .project-img-container img {
-            transform: scale(1.1);
+        .project-card:hover .project-image {
+            transform: scale(1.05);
         }
 
-        .project-body {
+        .project-content {
             padding: 25px;
         }
-        
-        .project-card:hover { border-color: var(--primary); transform: translateY(-5px); }
         
         .description { 
             max-height: 0; 
@@ -211,7 +210,7 @@
         }
         
         .project-card.active .description { 
-            max-height: 300px; 
+            max-height: 350px; 
             margin-top: 15px; 
         }
 
@@ -247,6 +246,7 @@
     </div>
 </header>
 
+<!-- Main Gallery Slider -->
 <div class="slider-container">
     <button class="slider-btn prev" onclick="moveSlide(-1)">&#10094;</button>
     <div class="slider" id="slider">
@@ -285,10 +285,8 @@
     <div class="project-grid">
         <!-- Project 1 -->
         <div class="project-card" onclick="toggleCard(this)">
-            <div class="project-img-container">
-                <img src="Project1.jpg" alt="Clinical Monitoring System">
-            </div>
-            <div class="project-body">
+            <img src="Project1.jpg.jpeg" class="project-image" alt="Clinical Monitoring System">
+            <div class="project-content">
                 <span class="role" style="color: var(--primary)">TECH FOR WELLNESS</span>
                 <h3>Clinical Monitoring System</h3>
                 <div class="description">
@@ -299,10 +297,8 @@
 
         <!-- Project 2 -->
         <div class="project-card" onclick="toggleCard(this)">
-            <div class="project-img-container">
-                <img src="Project2.jpg" alt="Patient Voice Assistance">
-            </div>
-            <div class="project-body">
+            <img src="Project2.jpg.jpeg" class="project-image" alt="Patient Voice Assistance">
+            <div class="project-content">
                 <span class="role" style="color: var(--primary)">EQUITY FOR ALL</span>
                 <h3>Patient Voice Assistance</h3>
                 <div class="description">
@@ -313,10 +309,8 @@
 
         <!-- Project 3 -->
         <div class="project-card" onclick="toggleCard(this)">
-            <div class="project-img-container">
-                <img src="Project3.jpg" alt="Menus Calorie Calculator">
-            </div>
-            <div class="project-body">
+            <img src="Project3.jpg.jpeg" class="project-image" alt="Menus Calorie Calculator">
+            <div class="project-content">
                 <span class="role" style="color: var(--primary)">SUSTAINABLE LIFESTYLE</span>
                 <h3>MenusCalorieCalculator</h3>
                 <div class="description">
@@ -350,6 +344,7 @@
 </footer>
 
 <script>
+    // --- Slider Logic ---
     let currentIndex = 0;
     const slider = document.getElementById('slider');
     const slides = document.querySelectorAll('.slide');
@@ -365,10 +360,13 @@
         slider.style.transform = `translateX(-${currentIndex * 100}%)`;
     }
 
+    // Auto-scroll every 4 seconds
     setInterval(() => moveSlide(1), 4000);
 
+    // --- Project Card Logic ---
     function toggleCard(card) {
         card.classList.toggle('active');
+        // Close other cards when one is opened
         document.querySelectorAll('.project-card').forEach(otherCard => {
             if (otherCard !== card) otherCard.classList.remove('active');
         });
