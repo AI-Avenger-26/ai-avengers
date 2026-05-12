@@ -14,6 +14,7 @@
             --text-light: #ffffff;
             --accent: #00d4ff;
             --bg-body: #f8f9fa;
+            --desc-text: #444;
         }
         
         body { 
@@ -25,7 +26,6 @@
             overflow-x: hidden; 
         }
 
-        /* Hero Header Section - Matching the Image Top */
         header { 
             padding: 80px 20px; 
             text-align: center; 
@@ -58,15 +58,12 @@
             transition: 0.3s;
         }
 
-        .member-card:hover { transform: translateY(-5px); border-color: #00ff9d; }
-
-        /* Project Slider */
         .slider-container {
             position: relative;
             width: 90%;
             max-width: 1000px;
             height: 450px;
-            margin: -50px auto 40px auto; /* Pulls up into the navy section */
+            margin: -50px auto 40px auto;
             overflow: hidden;
             border-radius: 30px;
             background: white;
@@ -87,21 +84,16 @@
 
         .section { padding: 60px 0; width: 90%; max-width: 1100px; margin: auto; }
         
-        h2 { 
-            font-size: 2rem; color: var(--navy); 
-            text-align: center; margin-bottom: 40px; font-weight: 700;
-        }
+        h2 { font-size: 2rem; color: var(--navy); text-align: center; margin-bottom: 40px; font-weight: 700; }
 
-        /* Project Grid - Floating Card Style */
-        .project-grid { 
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; 
-        }
+        .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
         
         .project-card { 
             background: var(--card-bg); border-radius: 20px; 
             padding: 40px 25px; text-align: center;
             box-shadow: 0 10px 25px rgba(0,0,0,0.05);
             transition: 0.4s ease; border: 1px solid #eee;
+            cursor: pointer;
         }
         
         .project-card:hover { transform: translateY(-10px); box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
@@ -122,19 +114,26 @@
         .project-wrapper.has-active .reveal-container {
             max-height: 1500px; margin-top: 30px; padding: 30px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+            border: 1px solid #eee;
         }
 
         .reveal-content { display: none; opacity: 0; transform: translateY(20px); transition: 0.6s; }
         .reveal-content.show { display: block; opacity: 1; transform: translateY(0); }
 
-        .full-width-image { 
-            width: 100%; border-radius: 15px; object-fit: contain; height: auto; max-height: 70vh;
+        .project-desc-text {
+            color: var(--desc-text); 
+            text-align: center;
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+            border-bottom: 1px solid #eee;
+            padding: 0 20px 25px 20px;
+            line-height: 1.8;
         }
 
-        /* Awards section */
+        .full-width-image { width: 100%; border-radius: 15px; object-fit: contain; height: auto; max-height: 70vh; }
+
         .awards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
         .award-box { background: white; padding: 25px; border-radius: 15px; border-left: 5px solid #00d4ff; box-shadow: 0 5px 15px rgba(0,0,0,0.03); }
-        .award-box h3 { margin: 0; color: var(--navy); font-size: 1rem; }
 
         .contact-container { 
             background: var(--navy); color: white; border-radius: 25px; padding: 50px; 
@@ -198,15 +197,19 @@
 
         <div class="reveal-container" id="revealContainer">
             <div class="reveal-content" id="content-1">
+                <p class="project-desc-text"><b>Project Overview:</b> A smart medical IoT device built on the ESP32 platform. It provides 24/7 real-time monitoring of critical environmental factors—temperature, humidity, and light intensity—within hospital wards to ensure optimal recovery conditions.</p>
                 <img src="Project1.jpg.jpeg" class="full-width-image">
             </div>
             <div class="reveal-content" id="content-2">
+                <p class="project-desc-text"><b>Project Overview:</b> Designed using PictoBlox, this assistive technology bridges the communication gap for individuals with speech impairments and the elderly. It converts simple inputs into clear vocal assistance, empowering users effectively.</p>
                 <img src="Project2.jpg.jpeg" class="full-width-image">
             </div>
             <div class="reveal-content" id="content-3">
+                <p class="project-desc-text"><b>Project Overview:</b> A comprehensive application that tracks nutritional intake. It intelligently calculates the exact amount of physical exercise required to burn off specific meals, promoting a balanced and healthy lifestyle.</p>
                 <img src="Project3.jpg.jpeg" class="full-width-image">
             </div>
             <div class="reveal-content" id="content-4">
+                <p class="project-desc-text"><b>Project Overview:</b> An industrial-grade air safety system utilizing high-precision MQ135 and MQ7 sensors. This device monitors Carbon Monoxide (CO) levels and triggers instant alerts to ensure a safe breathing environment.</p>
                 <img src="air quality.jpg.jpeg" class="full-width-image">
             </div>
         </div>
