@@ -12,6 +12,7 @@
             --card-bg: #121214; 
             --text: #ffffff; 
             --accent: #00ff9d; 
+            --desc-text: #00f2ff; /* Specific color for project descriptions */
         }
         
         body { 
@@ -157,7 +158,7 @@
         .award-box:hover { border-color: var(--accent); }
         .award-box h3 { margin: 0; font-size: 0.9rem; color: var(--accent); }
 
-        /* --- PROJECT SECTION --- */
+        /* --- UPDATED PROJECT SECTION WITH ANIMATION --- */
         .project-wrapper {
             display: flex;
             flex-direction: column;
@@ -180,7 +181,7 @@
             text-align: center;
         }
         
-        .project-card:hover { border-color: var(--primary); }
+        .project-card:hover { border-color: var(--primary); box-shadow: 0 0 15px rgba(0, 212, 255, 0.3); }
         .project-card.active { border-color: var(--accent); background: #1a1a1c; }
 
         .role { color: var(--accent); font-size: 0.8rem; font-weight: bold; letter-spacing: 1px; }
@@ -189,38 +190,56 @@
             width: 100%;
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.6s ease-in-out;
+            transition: max-height 0.8s cubic-bezier(0.4, 0, 0.2, 1);
             background: var(--card-bg);
             border-radius: 15px;
         }
 
         .project-wrapper.has-active .reveal-container {
-            max-height: 1200px;
+            max-height: 1500px;
             margin-top: 20px;
             border: 1px solid #333;
             padding: 20px;
         }
 
-        .reveal-content { display: none; animation: fadeIn 0.5s ease; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-        .project-desc-text {
-            color: #ccc;
-            text-align: center;
-            font-size: 1.1rem;
-            margin-bottom: 20px;
-            border-bottom: 1px solid #333;
-            padding-bottom: 15px;
+        .reveal-content { 
+            display: none; 
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
         }
 
-        /* FIXED: Ensures image is not cropped on laptop */
+        /* Animation class applied when content is displayed */
+        .reveal-content.show {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .project-desc-text {
+            color: var(--desc-text); /* New font color for better visibility */
+            text-align: center;
+            font-size: 1.15rem;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #333;
+            padding: 0 20px 20px 20px;
+            font-weight: 400;
+            line-height: 1.8;
+        }
+
         .full-width-image { 
             width: 100%; 
             border-radius: 10px; 
             display: block; 
             object-fit: contain; 
             height: auto; 
-            max-height: 80vh; /* Limits height so it doesn't push off screen */
+            max-height: 80vh;
+            filter: drop-shadow(0 0 10px rgba(0, 212, 255, 0.2));
+            transition: transform 0.5s ease;
+        }
+
+        .full-width-image:hover {
+            transform: scale(1.01);
         }
 
         .contact-container { 
@@ -303,19 +322,19 @@
 
         <div class="reveal-container" id="revealContainer">
             <div class="reveal-content" id="content-1">
-                <p class="project-desc-text">ESP32-based device monitoring temperature, humidity, and light for ICU settings.</p>
+                <p class="project-desc-text"><b>Project Overview:</b> A smart medical IoT device built on the ESP32 platform. It provides 24/7 real-time monitoring of critical environmental factors—temperature, humidity, and light intensity—within ICU and hospital wards to ensure optimal patient recovery conditions.</p>
                 <img src="Project1.jpg.jpeg" class="full-width-image">
             </div>
             <div class="reveal-content" id="content-2">
-                <p class="project-desc-text">PictoBlox application for speech impairments and elderly communication.</p>
+                <p class="project-desc-text"><b>Project Overview:</b> Designed using PictoBlox, this assistive technology bridges the communication gap for individuals with speech impairments and the elderly. It converts simple inputs into clear vocal assistance, empowering users to communicate their needs effectively.</p>
                 <img src="Project2.jpg.jpeg" class="full-width-image">
             </div>
             <div class="reveal-content" id="content-3">
-                <p class="project-desc-text">Android tool calculating meal calories and corresponding workout needs.</p>
+                <p class="project-desc-text"><b>Project Overview:</b> A comprehensive Android application that tracks nutritional intake. It doesn't just count calories; it intelligently calculates the exact amount of physical exercise required to burn off specific meals, promoting a balanced and healthy lifestyle.</p>
                 <img src="Project3.jpg.jpeg" class="full-width-image">
             </div>
             <div class="reveal-content" id="content-4">
-                <p class="project-desc-text">Advanced monitoring system utilizing MQ135 and MQ7 sensors to track air quality and CO levels in real-time, instantly alerting users to hazardous conditions.</p>
+                <p class="project-desc-text"><b>Project Overview:</b> An industrial-grade air safety system utilizing high-precision MQ135 and MQ7 sensors. This device monitors Carbon Monoxide (CO) levels and general air toxicity, triggering instant alerts to prevent respiratory hazards and ensure a safe breathing environment.</p>
                 <img src="air quality.jpg.jpeg" class="full-width-image">
             </div>
         </div>
@@ -346,7 +365,7 @@
     }
     setInterval(() => moveSlide(1), 4000);
 
-    // Project Reveal Logic
+    // Project Reveal Logic with Animation
     function toggleProject(id) {
         const wrapper = document.getElementById('projectWrapper');
         const contents = document.querySelectorAll('.reveal-content');
@@ -357,14 +376,25 @@
         if (selectedCard.classList.contains('active')) {
             selectedCard.classList.remove('active');
             wrapper.classList.remove('has-active');
-            selectedContent.style.display = 'none';
+            selectedContent.classList.remove('show');
+            setTimeout(() => { selectedContent.style.display = 'none'; }, 600);
         } else {
+            // Remove active state from others
             cards.forEach(c => c.classList.remove('active'));
-            contents.forEach(c => c.style.display = 'none');
+            contents.forEach(c => {
+                c.classList.remove('show');
+                c.style.display = 'none';
+            });
             
+            // Activate selection
             selectedCard.classList.add('active');
             wrapper.classList.add('has-active');
             selectedContent.style.display = 'block';
+            
+            // Small timeout to allow display:block to register before adding animation class
+            setTimeout(() => {
+                selectedContent.classList.add('show');
+            }, 10);
         }
     }
 </script>
