@@ -166,7 +166,7 @@
 
         .project-grid { 
             display: grid; 
-            grid-template-columns: repeat(3, 1fr); 
+            grid-template-columns: repeat(2, 1fr); /* Changed to 2 columns for a better 2x2 layout */
             gap: 25px; 
         }
         
@@ -213,7 +213,7 @@
             padding-bottom: 15px;
         }
 
-        .full-width-image { width: 100%; border-radius: 10px; display: block; }
+        .full-width-image { width: 100%; border-radius: 10px; display: block; max-height: 500px; object-fit: cover; }
 
         .contact-container { 
             background: var(--card-bg); 
@@ -287,6 +287,11 @@
                 <span class="role" style="color: var(--primary)">SUSTAINABLE LIFESTYLE</span>
                 <h3>MenusCalorieCalculator</h3>
             </div>
+            <!-- NEW PROJECT ADDED HERE -->
+            <div class="project-card" id="card-4" onclick="toggleProject(4)">
+                <span class="role" style="color: var(--primary)">ENVIRONMENTAL SAFETY</span>
+                <h3>Air Quality & CO Monitor</h3>
+            </div>
         </div>
 
         <div class="reveal-container" id="revealContainer">
@@ -301,6 +306,11 @@
             <div class="reveal-content" id="content-3">
                 <p class="project-desc-text">Android tool calculating meal calories and corresponding workout needs.</p>
                 <img src="Project3.jpg.jpeg" class="full-width-image">
+            </div>
+            <!-- NEW CONTENT ADDED HERE -->
+            <div class="reveal-content" id="content-4">
+                <p class="project-desc-text">Advanced monitoring system utilizing MQ135 and MQ7 sensors to track air quality and CO levels in real-time, instantly alerting users to hazardous conditions.</p>
+                <img src="air quality.jpg.jpeg" class="full-width-image" alt="Air Quality Project">
             </div>
         </div>
     </div>
@@ -341,6 +351,7 @@
         if (selectedCard.classList.contains('active')) {
             selectedCard.classList.remove('active');
             wrapper.classList.remove('has-active');
+            selectedContent.style.display = 'none';
         } else {
             cards.forEach(c => c.classList.remove('active'));
             contents.forEach(c => c.style.display = 'none');
